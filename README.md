@@ -1,7 +1,6 @@
 # Research
 
-Charged Particle Search /n
-Electric Field Search
+Charged Particle Search 
 
 
 @Beomjin Daniel An
