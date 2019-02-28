@@ -131,7 +131,7 @@ class GSA():
 def func1(x):
     total=0
     for i in range(len(x)):
-        total+=x[i]**2
+        total+= math.cos(x[i])
     return total
 
 if __name__ == "__GSA__":

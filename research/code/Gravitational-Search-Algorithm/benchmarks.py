@@ -20,7 +20,7 @@ import math
 
     
 def F1(x):
-  """ Spere Function """
+  """ Sphere Function """
   s=numpy.sum(x**2);
   return s
 
