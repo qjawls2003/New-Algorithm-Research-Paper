@@ -1,0 +1,796 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass IEEEtran
+\begin_preamble
+% for subfigures/subtables
+\usepackage[caption=false,font=footnotesize]{subfig}
+\end_preamble
+\options conference
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement tbh
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Your Title"
+\pdf_author "Your Name"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This is a template \SpecialChar LyX
+ file for conference articles of conferences organized
+ by the Institute of Electrical and Electronics Engineers (IEEE).
+ For IEEE journal articles, see the template file 
+\emph on
+IEEEtran-Journal.lyx
+\emph default
+.
+ For general info see 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://wiki.lyx.org/Examples/IEEE
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+It is important that you use the correct document class options for your
+ document..
+ These are explained in the IEEEtran documentation: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://mirror.ctan.org/macros/latex/contrib/IEEEtran/IEEEtran_HOWTO.pdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Directional Search Algorithm and its Utilization of Simulated Annealing
+ and Contract-Retract
+\end_layout
+
+\begin_layout Author
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+the standard way: 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Author Name
+status collapsed
+
+\begin_layout Plain Layout
+Beom Jin An
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Author Affiliation
+status collapsed
+
+\begin_layout Plain Layout
+United States Military Academy
+\begin_inset Newline newline
+\end_inset
+
+Department of Electrical Engineering and
+\begin_inset Newline newline
+\end_inset
+
+Computer Science
+\begin_inset Newline newline
+\end_inset
+
+Email: danielan1996@gmail.com
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+By building an optimization algorithm, one can understand the details of
+ which factors contribute to creating a sufficient optimization algorithm.
+ In this research, a new algorithm was crafted to experiment on how a combinatio
+n of existing optimization techniques may improve the performance of the
+ algorithm.
+ The new algorithm, called the Directional Search Algorithm (DSA), utilizes
+ a conglomeration of different techniques typically used in optimization
+ algorithms.
+ These techniques are carefully integrated into one algorithm that geared
+ to finding the global minimum of a single-objective three-dimensional function.
+ DSA is an algorithm derived from an idea that a single search particle
+ extends out in different directions to “scope” out its surroundings.
+ This particle scopes out in multiple directions and finds the solutions
+ at those extended positions.
+ With the incorporation of simulated annealing and a method called “Contraction-
+Retraction,” the particle will be able to explore the search space expansively.
+ Also, the algorithm also offers a unique technique that capitalizes a sufficien
+t balance between exploration and exploitation.
+ The first part of the research will explain and justify the utilization
+ of specific techniques and parameters.
+ The second part of the research will explore the effectiveness of the algorithm.
+ The factors that determine the effectiveness of the algorithm are the following
+: convergence rate, precision, robustness, and performance.
+ The research examined these four factors on DSA and analyzed the overall
+ performance of the algorithm compared to that of a similar algorithm, the
+ Particle Swarm Optimization (PSO).
+ 
+\end_layout
+
+\begin_layout Peer Review Title
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Don't add text here!
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+required if you use the document class option 
+\family sans
+peerreview
+\family default
+, must otherwise not be used
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Optimization problems require an immense amount of computational time as
+ the problem scales increase.
+ It is often unrealistic to compute the solution of an optimization problem
+ using brute force because the problem has a nondeterministic polynomial
+ computational time.
+ Thus, metaheuristic algorithms are built to overcome this computational
+ time problem.
+ Although metaheuristic algorithms do not always output the global optimum,
+ they provide efficiency in approximating optimal solutions.
+ They make assumptions about the problem space to reduce search space and
+ computation.
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Standard
+It is often difficult to create an optimization algorithm because of its
+ variety and complex relationships between parameters.
+ Thus, in many cases, optimization algorithms are often inspired by phenomena
+ in nature.
+ The inspired algorithms are nature-proven methods of optimization, and
+ they derive the properties from these natural behaviors that can assist
+ in creating an optimization algorithm that works.
+\end_layout
+
+\begin_layout Subsection
+Simluated Annealing
+\end_layout
+
+\begin_layout Standard
+One of the most prominent nature-derived methods is “Simulated Annealing.”
+ Its inspiration comes from annealing metallurgy, a technique that involves
+ cooling the heated material in a controlled manner to help the molecules
+ form stable crystals.
+ Each material has its optimum cooling rate to create the strongest form
+ of that material after cooling.
+ Similarly, this method can be used to find a global minimum of a system
+ or a problem.
+ The mathematical function used in simulated annealing determines the probabilit
+y in which the search will accept a worse solution.
+ As the temperature within this function decreases, this probability also
+ decreases.
+ This means that the higher temperature allows for exploration in the initial
+ phase of the search iterations.
+ Once the temperature starts to cool down, the search begins its exploitation
+ and hones down to one area in the search space.
+ Simulated annealing is primarily a tool to balance the exploration and
+ the exploitation within the algorithm.
+ It also offers the probability characteristic that will allow for a more
+ randomized search.
+ 
+\end_layout
+
+\begin_layout Subsection
+Beam Search
+\end_layout
+
+\begin_layout Standard
+In contrast to the simulated annealing method, there is a straight forward
+ concept to pick the solution each step in the optimization algorithm.
+ As simulated annealing offers a probability whether to accept the solution
+ or not, this classic method called “Beam search” is a greedy search algorithm
+ that always accepts the best neighboring node.
+ It explores all possible adjacent nodes and expands to the most promising
+ node.
+ Thus, the probability of accepting a worse solution is always zero.
+ The benefit of the Beam search is that it will approach the solution much
+ quicker than the methods that use probabilities.
+ Also, another advantage is that it does not have any memory requirement.
+ However, the disadvantage of Beam search is that it may converge quicker
+ into a local optimum will not be able to get out.
+ The Beam search does not explore enough of the search space, and its convergenc
+e rate is too high.
+ Thus, once the search enters a local minimum, it has no chance of getting
+ out.
+\end_layout
+
+\begin_layout Subsection
+Particle Swarm Optimization (PSO)
+\end_layout
+
+\begin_layout Standard
+PSO is a metaheuristic that utilizes swarm intelligence to find the optimum
+ solution of a system.
+ Swarm intelligence capitalizes the collective knowledge of multiple particles.
+ The algorithm initiates with a certain number of particles, and it iteratively
+ improves the positions of these particles by using formulas to determine
+ the position and the velocity of each particle.
+ The particles are guided towards the best solution.
+ The benefit of PSO is that it is more thorough during the exploration process.
+ The particles move across the search space, and they do not “teleport”
+ across the search space.
+ When particles teleport randomly throughout the search space, it loses
+ its exploitative behavior will not be able to settle on a solution.
+ PSO particles converge to the best solution gradually.
+ However, this property can also be a disadvantage as the convergence rate
+ might be too fast before conducting sufficient exploration.
+ PSO does not have a feature that expands its search since it is designed
+ only to converge.
+ Thus, once enough particles swarm into a local minimum, they have no way
+ of exiting that space.
+\end_layout
+
+\begin_layout Section
+Direction Search Algorithm (DSA)
+\end_layout
+
+\begin_layout Standard
+DSA is an optimization algorithm that takes a continuous function of any
+ dimensions as input and outputs the global minimum of that function.
+\end_layout
+
+\begin_layout Subsection
+Initialization
+\end_layout
+
+\begin_layout Standard
+DSA utilizes multiple agents or particles to share the search space.
+ The algorithm initializes with one particle being placed randomly within
+ the given boundary constraints.
+ The other particles are determined by using the coordinate of the initial
+ particle.
+ DSA calls the initialized particle 
+\begin_inset Quotes eld
+\end_inset
+
+the agent,
+\begin_inset Quotes erd
+\end_inset
+
+ and the other expanded particles 
+\begin_inset Quotes eld
+\end_inset
+
+scoping particles.
+\begin_inset Quotes erd
+\end_inset
+
+ The number of the scoping particles varies depedning on the dimension of
+ the search space.
+ The total 
+\begin_inset Formula $Pop$
+\end_inset
+
+
+\begin_inset Formula $Size$
+\end_inset
+
+ of the particles will be: 
+\begin_inset Formula $3^{dim}$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $dim$
+\end_inset
+
+ is the 
+\begin_inset Quotes eld
+\end_inset
+
+dimension of the scope
+\begin_inset Quotes erd
+\end_inset
+
+ which is one less than the dimension of the search space which will be
+ explained in the next subsection.
+ The algorithm makes a matrix called 
+\begin_inset Formula $particles$
+\end_inset
+
+ that contains the coordinates of the particles which is all initialized
+ with zeroes.
+ This matrix makes it easy for the algorithm to access and update the positions
+ of the particles.
+ Then, an array called 
+\begin_inset Formula $fit$
+\end_inset
+
+ with the size of the 
+\begin_inset Formula $PopSize$
+\end_inset
+
+ is created to store the solutions or 
+\begin_inset Formula $fitness$
+\end_inset
+
+ of the particles.
+ One more additional array called 
+\begin_inset Formula $best$
+\end_inset
+
+ is created to store the position of the best particle, in this case, the
+ particle with the lowest calcuated value.
+\end_layout
+
+\begin_layout Subsection
+Directional Movement
+\end_layout
+
+\begin_layout Standard
+As the name describes it, a critical component of DSA is the directional
+ search method.
+ In most cases, the search space is a continuous function.
+ This means that the movement through the search space on a Cartesian coordinate
+ system requires the algorithm to specify the grid coordinates.
+ In contrast, a graph with nodes has a set of adjacent nodes that restricts
+ the movement through the graph.
+ Thus, even within a continuous function, a way of establishing a set of
+ adjacent nodes is required to move through the search space.
+ DSA uses a simple way of choosing these adjacent nodes or in this case,
+ adjacent coordinates.
+ From the starting point of the search space, which is initialized randomly,
+ the adjacent coordinates are determined by adding or subtracting certain
+ 
+\begin_inset Quotes eld
+\end_inset
+
+values
+\begin_inset Quotes erd
+\end_inset
+
+ from the initial coordinate.
+ (These 
+\begin_inset Quotes eld
+\end_inset
+
+values
+\begin_inset Quotes erd
+\end_inset
+
+ will be discussed in the next subsection)
+\begin_inset Newline newline
+\end_inset
+
+ [This needs graphical representations] 
+\begin_inset Newline newline
+\end_inset
+
+These adjacent coordinates are called “scoping particles” and the initial
+ or the center coordinate is called the “agent”.
+ The scoping particles are on a dimension that is one less than the search
+ space.
+ For example, when searching through a three-dimensional function, you will
+ need two-dimensional scoping particles.
+ One way to look at this is to observe the input variables and the output
+ variable.
+ The particles in the search space are calculating solutions on their respective
+ coordinates.
+ On a three dimensional function, there are two input variables and one
+ output variable.
+ There will always be just one output variable.
+ The two input variables are the dimensions you need to output a solution.
+ Therefore, the particles will have a dimension equal to the number of input
+ variables.
+ 
+\end_layout
+
+\begin_layout Subsection
+Scoping Factor
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement htbp
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\family sans
+A single column figure goes here
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Captions go 
+\emph on
+under
+\emph default
+ the figure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement htbp
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Table captions go 
+\emph on
+above
+\emph default
+ the table
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+delete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+this
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+example
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+table
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+bla bla
+\end_layout
+
+\begin_layout Appendices
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Don't add text here!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+First appendix
+\end_layout
+
+\begin_layout Standard
+Citation: 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "IEEEexample:beebe_archive"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Second appendix
+\end_layout
+
+\begin_layout Section*
+Acknowlegment
+\end_layout
+
+\begin_layout Standard
+bla bla
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Remember though that your final submission is supposed to have all the bibliogra
+phy entries embedded in the \SpecialChar LaTeX
+-file.
+ This means you eventually have to copy the .bbl file into the latex file
+ and remove the bibtex lines.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "IEEEabrv,IEEEexample"
+options "IEEEtran"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Biography
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "1in"
+special "none"
+height "1.25in"
+height_special "none"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Replace this box by an image with a width of 1
+\begin_inset space \thinspace{}
+\end_inset
+
+in and a height of 1.25
+\begin_inset space \thinspace{}
+\end_inset
+
+in!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Your Name
+\end_layout
+
+\end_inset
+
+ All about you and the what your interests are.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Biography without photo
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Coauthor
+\end_layout
+
+\end_inset
+
+Same again for the co-author, but without photo
+\end_layout
+
+\end_body
+\end_document

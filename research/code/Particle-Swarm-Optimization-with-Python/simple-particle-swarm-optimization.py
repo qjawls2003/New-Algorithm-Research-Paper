@@ -10,7 +10,11 @@
 
 from __future__ import division
 import random
+import numpy
+import numpy as np
 import math
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 #--- COST FUNCTION ------------------------------------------------------------+
 
@@ -20,6 +24,32 @@ def func1(x):
     for i in range(len(x)):
         total+=x[i]**2
     return total
+
+def function1(x): #f(0,0,...0) = 0
+    total=0
+    for i in range(len(x)):
+        total+= (x[i])**2
+    return total
+
+def function2(coord): #Beale Function: f(3,0.5) = 0
+    x = coord[0]
+    y = coord[1]
+
+    f = (1.5-x+(x*y))**2+(2.25-x+(x*(y**2)))**2+(2.625-x+(x*(y**3)))**2
+    return f
+
+def function3(coord): #Levi Function: f(1,1) = 0
+    x = coord[0]
+    y = coord[1]
+    pi = math.pi
+    f = ((math.sin(3*pi*x))**2)+((x-1)**2)*(1+(math.sin(3*pi*y))**2)+((y-1)**2)*(1+(math.sin(2*pi*y))**2)
+    return f
+def function4(coord): #Eggholder function f(512, 404.2319) = -959.6407
+    x = coord[0]
+    y = coord[1]
+    f =(-(y + 47.0)*np.sin(np.sqrt(abs(x/2.0 + (y + 47.0))))- x * np.sin(np.sqrt(abs(x - (y + 47.0)))))
+    return f
+
 
 #--- MAIN ---------------------------------------------------------------------+
 
@@ -33,7 +63,7 @@ class Particle:
 
         for i in range(0,num_dimensions):
             self.velocity_i.append(random.uniform(-1,1))
-            self.position_i.append(x0[i])
+            self.position_i.append(random.uniform(-1,1)*512)
 
     # evaluate current fitness
     def evaluate(self,costFunc):
@@ -113,8 +143,10 @@ if __name__ == "__PSO__":
 
 #--- RUN ----------------------------------------------------------------------+
 
-initial=[5,5]               # initial starting location [x1,x2...]
-bounds=[(-10,10),(-10,10)]  # input bounds [(x1_min,x1_max),(x2_min,x2_max)...]
-PSO(func1,initial,bounds,num_particles=15,maxiter=30)
+               # initial starting location [x1,x2...]
+bounds=[(-512,512),(-512,512)]  # input bounds [(x1_min,x1_max),(x2_min,x2_max)...]
+for i in range(10):
+    initial= numpy.random.uniform(0,1,(2))*512
+    PSO(function4,initial,bounds,num_particles=50,maxiter=150)
 
 #--- END ----------------------------------------------------------------------+

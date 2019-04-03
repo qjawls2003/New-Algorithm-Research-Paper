@@ -11,8 +11,8 @@ yline = list()
 zline = list()
 def DSA(lb, ub, dim, iters, func, convergence):
 
-    PopSize = 3**dim #every dimension will have two scope particles, +1 is for the explorer particle
-    particles = numpy.zeros((PopSize,dim)) #create a matrix of the particles, ex. 2 dimensions will have one explorer particles and 4 scope particles
+    PopSize = 3**dim #every dimension will exponentially increase the number of particles
+    particles = numpy.zeros((PopSize,dim)) #create a matrix of the particles, ex. 2 dimensions will have one explorer particles and eight scope particles
                                             #(oriented East, West, North, South, respectively)
     fit = numpy.zeros(PopSize) #array of the fitness of each particle
     best = numpy.zeros(dim) #position of the best particle (with the miniumum fitness)
@@ -21,9 +21,7 @@ def DSA(lb, ub, dim, iters, func, convergence):
     pos = numpy.random.uniform(0,1,(dim))*(ub-lb)+lb #randomly places the explorer particle within the upper and lower bounds
     #convergence_curve=numpy.zeros(iters)
     restart = 0 #to avoid resetting the explorer again after one iteration
-    repeated = 0 #used track repeats, to tighten the scope if the scope is too big
-    prob = 0.1 #future use
-    golden = 1.61803398875
+    #repeated = 0 #used track repeats, to tighten the scope if the scope is too big
     countdown = iters*PopSize*dim
     v = contractRetract(countdown,1,1,1)
     T = 100
@@ -86,8 +84,8 @@ def DSA(lb, ub, dim, iters, func, convergence):
         #bestfit = min(fit) #get the minimum fitness "Beam search"
         bestfit = simulated_annealing(fit,oldbestfit,T)
         T = cooldown*T
-        if numpy.array_equal(best,particles[0]): #if the bestfit values repeats (used to tigthen the search scope)
-            repeated += 0.5
+        #if numpy.array_equal(best,particles[0]): #if the bestfit values repeats (used to tigthen the search scope)
+         #   repeated += 0.5
         #print(bestfit)
         xline.append(best[0])
         yline.append(best[1])
@@ -155,7 +153,7 @@ def function4(coord): #Eggholder function f(512, 404.2319) = -959.6407
 #LNA(lowerbound, upperbound, positional dim, iterations, function)
 #For positional dimension, it is one dimension less than the actual function search space.
 for i in range(10): #run the test 10 times
-    DSA(-512,512,2,1000, function4,0)
+    DSA(-512,512,2,500, function4,0)
 
 #For the Levi function, since there are so many local minimas, search is difficult. This can be
 #mitigated by figuring out the optimal "Scope" retraction and contraction function
