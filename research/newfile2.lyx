@@ -523,6 +523,15 @@ These adjacent coordinates are called “scoping particles” and the initial
 Scoping Factor
 \end_layout
 
+\begin_layout Standard
+As mentioned above, certain values are added or subtracted from the coordinate
+ values of the agent which is the center coordinate.
+ This allows the scoping particles to expand out and explore the search
+ space.
+ The algorithm randomizes these values to ensure a robust explorative feature.
+ The randomization process is as follows:
+\end_layout
+
 \begin_layout Section
 Results
 \end_layout

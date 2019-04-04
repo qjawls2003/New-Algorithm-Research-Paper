@@ -368,6 +368,11 @@ PSO is a metaheuristic that utilizes swarm intelligence to find the optimum
 Direction Search Algorithm (DSA)
 \end_layout
 
+\begin_layout Standard
+DSA is an optimization algorithm that takes a continuous function of any
+ dimensions as input and outputs the global minimum of that function.
+\end_layout
+
 \begin_layout Subsection
 Initialization
 \end_layout
@@ -449,7 +454,7 @@ dimension of the scope
 \end_inset
 
  is created to store the position of the best particle, in this case, the
- fitest particle.
+ particle with the lowest calcuated value.
 \end_layout
 
 \begin_layout Subsection

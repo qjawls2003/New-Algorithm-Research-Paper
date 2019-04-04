@@ -13,9 +13,8 @@ def DSA(lb, ub, dim, iters, func, convergence):
 
     PopSize = 3**dim #every dimension will exponentially increase the number of particles
     particles = numpy.zeros((PopSize,dim)) #create a matrix of the particles, ex. 2 dimensions will have one explorer particles and eight scope particles
-                                            #(oriented East, West, North, South, respectively)
     fit = numpy.zeros(PopSize) #array of the fitness of each particle
-    best = numpy.zeros(dim) #position of the best particle (with the miniumum fitness)
+    best = numpy.zeros(dim) #position of the best particle (with the miniumum value)
     bestfit = float("inf") #best value (minimum)
     
     pos = numpy.random.uniform(0,1,(dim))*(ub-lb)+lb #randomly places the explorer particle within the upper and lower bounds
@@ -28,32 +27,22 @@ def DSA(lb, ub, dim, iters, func, convergence):
     cooldown = 0.95
     for i in range(dim):
             particles[0,i] = pos[i].item()
-            
+
+    #THIS WHOLE SECTION UPDATES THE "particles" matrix   
     for l in range(iters): #for every iteration
-        parity = l
-        
-        '''
-        if repeated < iters/golden: #if the repeated bestfit values are more than iters/1.618, arbitrary
-            i = 0
-            j = golden/((l**2)+1) #arbitrary, will need to justify it through experimentation
-        else:
-            i = 0
-            j = golden/((l*repeated)+1) #arbitrary
-        '''
-            
-        
+        parity = l 
         
         for i in range(dim): #for each dimensions, ex. x coord -> y coord -> z coord
             switch = 0 #trinary, since the scope can only to stay, subtracted, or added from the explorer's coordinate
-            count = (3**(dim-1))/(3**i)
+            count = (3**(dim-1))/(3**i) 
             counter = 0
             for j in range(0, PopSize): #for every particle 
-                k = contractRetract(countdown,1,1,1)/v
+                k = contractRetract(countdown,1,1,1)/v #the input values are arbitrary, the v makes the output proportional
                 countdown -= 1
-                if k < 0:
+                if k < 0: #keeps the output positive
                     k = -1*k
 
-                #ScopeFactor = numpy.random.uniform(0,k)*(ub/((repeated+1)**2)) #each particle will get a random scopefactor depending on iterations and repetitio
+                #each particle will get a random scopefactor depending on iterations and the convergence factor
                 ScopeFactor = numpy.random.uniform(0,k)*((ub-lb)/(l+1)**convergence)
                 scopefactors.append(ScopeFactor)
                 if switch == 0:
@@ -83,10 +72,7 @@ def DSA(lb, ub, dim, iters, func, convergence):
         oldbestfit = bestfit
         #bestfit = min(fit) #get the minimum fitness "Beam search"
         bestfit = simulated_annealing(fit,oldbestfit,T)
-        T = cooldown*T
-        #if numpy.array_equal(best,particles[0]): #if the bestfit values repeats (used to tigthen the search scope)
-         #   repeated += 0.5
-        #print(bestfit)
+        T = cooldown*T #temperature cooldown
         xline.append(best[0])
         yline.append(best[1])
         zline.append(bestfit)
