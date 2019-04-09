@@ -87,7 +87,7 @@ def simulated_annealing(fit,oldbestfit, T):
     if bestfit <= oldbestfit:
         return bestfit
     else:
-        p = exp(-(bestfit-oldbestfit)/T)
+        p = math.exp(-(bestfit-oldbestfit)/T)
         if random.uniform(0,1) > p:
             return bestfit
         else:
@@ -138,16 +138,21 @@ def function4(coord): #Eggholder function f(512, 404.2319) = -959.6407
 
 #LNA(lowerbound, upperbound, positional dim, iterations, function)
 #For positional dimension, it is one dimension less than the actual function search space.
-for i in range(10): #run the test 10 times
-    DSA(-512,512,2,500, function4,0)
+import time
 
+start = time.time()
+print("STARTING DSA:")
+for i in range(10): #run the test 10 times
+    DSA(-10,10,2,500, function2,0)
+end = time.time()
+print(end - start)
 #For the Levi function, since there are so many local minimas, search is difficult. This can be
 #mitigated by figuring out the optimal "Scope" retraction and contraction function
 
       
 plt.plot(scopefactors)
 plt.ylabel('Scope Factors')
-plt.show()
+#plt.show()
 x = np.linspace(-10, 10, 30)
 y = np.linspace(-10, 10, 30)
 
@@ -162,7 +167,7 @@ ax.plot3D(xline, yline, zline, 'blue')
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z');
-
+#plt.show()
 fig.show()
           
                       

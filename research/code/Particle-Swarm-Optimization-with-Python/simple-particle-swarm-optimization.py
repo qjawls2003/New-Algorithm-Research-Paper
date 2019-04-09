@@ -134,9 +134,8 @@ class PSO():
             i+=1
 
         # print final results
-        print ('FINAL:')
-        print (pos_best_g)
-        print (err_best_g)
+        print("Best Solution: ", pos_best_g, " Value: ", err_best_g)
+
 
 if __name__ == "__PSO__":
     main()
@@ -144,9 +143,15 @@ if __name__ == "__PSO__":
 #--- RUN ----------------------------------------------------------------------+
 
                # initial starting location [x1,x2...]
-bounds=[(-512,512),(-512,512)]  # input bounds [(x1_min,x1_max),(x2_min,x2_max)...]
+import time
+
+start = time.time()
+print("STARTING PSO:")
+bounds=[(-512,512),(-512,512)]
+bounds1=[(-10,10),(-10,10)]
 for i in range(10):
     initial= numpy.random.uniform(0,1,(2))*512
-    PSO(function4,initial,bounds,num_particles=50,maxiter=150)
-
+    PSO(function1,initial,bounds,num_particles=100,maxiter=500)
+end = time.time()
+print(end - start)
 #--- END ----------------------------------------------------------------------+
