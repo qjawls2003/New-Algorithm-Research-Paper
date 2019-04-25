@@ -4,6 +4,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import time
 
 scopefactors = list()
 xline = list()
@@ -21,30 +22,31 @@ def DSA(lb, ub, dim, iters, func, convergence):
     #convergence_curve=numpy.zeros(iters)
     restart = 0 #to avoid resetting the explorer again after one iteration
     #repeated = 0 #used track repeats, to tighten the scope if the scope is too big
-    countdown = iters*PopSize*dim
-    v = contractRetract(countdown,1,1,1)
-    T = 100
-    cooldown = 0.95
+    countdown = iters*PopSize*dim #total number of k values needed
+    v = contractRetract(countdown,1,100,0.05)
+    T = 100 #initial temperature
+    cooldown = 0.95 #temperature cooldown rate
+    
     for i in range(dim):
             particles[0,i] = pos[i].item()
 
     #THIS WHOLE SECTION UPDATES THE "particles" matrix   
     for l in range(iters): #for every iteration
-        parity = l 
         
         for i in range(dim): #for each dimensions, ex. x coord -> y coord -> z coord
             switch = 0 #trinary, since the scope can only to stay, subtracted, or added from the explorer's coordinate
             count = (3**(dim-1))/(3**i) 
             counter = 0
             for j in range(0, PopSize): #for every particle 
-                k = contractRetract(countdown,1,1,1)/v #the input values are arbitrary, the v makes the output proportional
+                k = contractRetract(countdown,1,100,0.05)/v #the input values are arbitrary, the v makes the output proportional
                 countdown -= 1
                 if k < 0: #keeps the output positive
                     k = -1*k
+                scopefactors.append(k)
 
                 #each particle will get a random scopefactor depending on iterations and the convergence factor
                 ScopeFactor = numpy.random.uniform(0,k)*((ub-lb)/(l+1)**convergence)
-                scopefactors.append(ScopeFactor)
+                #scopefactors.append(ScopeFactor)
                 if switch == 0:
                     counter +=1
                     particles[j,i] = particles[0,i].item()
@@ -71,14 +73,16 @@ def DSA(lb, ub, dim, iters, func, convergence):
         best, fit = calcBestFitness(particles, PopSize, dim, bestfit, func) #calcuate the best (position of the best particle), fit (array of all particles' fitness)
         oldbestfit = bestfit
         #bestfit = min(fit) #get the minimum fitness "Beam search"
-        bestfit = simulated_annealing(fit,oldbestfit,T)
+        bestfit = simulated_annealing(fit,oldbestfit,T) #less greedy"
         T = cooldown*T #temperature cooldown
         xline.append(best[0])
         yline.append(best[1])
         zline.append(bestfit)
         for i in range(dim):
             particles[0,i] = best[i]
-    print("Best Solution: ", best, " Value: ", bestfit)
+    #print("Best Solution: ", best, " Value: ", round(bestfit,4))
+    return([best,bestfit])
+    
         
 
 def simulated_annealing(fit,oldbestfit, T):
@@ -111,6 +115,7 @@ def calcBestFitness(particles, PopSize, dim, bestfit, func):
 def contractRetract(x,A,B,C):
     return A*(x**2)+ x*B*(math.cos(C*math.pi*x))
 
+############################### FUNCTIONS ###################################################
 def function1(x): #f(0,0,...0) = 0
     total=0
     for i in range(len(x)):
@@ -136,18 +141,39 @@ def function4(coord): #Eggholder function f(512, 404.2319) = -959.6407
     f =(-(y + 47.0)*np.sin(np.sqrt(abs(x/2.0 + (y + 47.0))))- x * np.sin(np.sqrt(abs(x - (y + 47.0)))))
     return f
 
-#LNA(lowerbound, upperbound, positional dim, iterations, function)
 #For positional dimension, it is one dimension less than the actual function search space.
-for i in range(10): #run the test 10 times
-    DSA(-512,512,2,500, function4,0)
+convergence = 0
+best = open('best1.csv', 'a')
+bestfit = open('bestfit2.csv', 'a')
+testrun = 100
+numRight = 0.0
+right1 = 0.000
+right4 = -959.6407
 
-#For the Levi function, since there are so many local minimas, search is difficult. This can be
-#mitigated by figuring out the optimal "Scope" retraction and contraction function
+start = time.time()
+print("RUNNING DSA...")
+for i in range(testrun): #run the test 10 times
+    data = DSA(-512,512,2,500, function4,convergence)
+    solution = round(data[1],4)
+    if solution == right4:
+        numRight += 1
+    #best.write(str(data[0]) + '\n')
+    #bestfit.write(str(solution) + '\n')
+end = time.time()
+print(str(end - start) + " seconds") 
+print(str(numRight/testrun))
+best.close()
+bestfit.close()
 
+
+############################# PLOT #############################################################
       
 plt.plot(scopefactors)
-plt.ylabel('Scope Factors')
-plt.show()
+plt.title('Contract-Retract')
+#plt.title('Convergence Rate: '+ str(convergence))
+plt.xlabel('Iteration per particle')
+plt.ylabel('k-value')
+#plt.show()
 x = np.linspace(-10, 10, 30)
 y = np.linspace(-10, 10, 30)
 
@@ -163,7 +189,7 @@ ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z');
 
-fig.show()
+#fig.show()
           
                       
             
