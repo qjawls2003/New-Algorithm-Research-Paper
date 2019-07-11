@@ -3,3 +3,7 @@ https://ieeexplore.ieee.org/document/7311125
 https://www.researchgate.net/publication/282598748_Electromagnetic_field_optimization_A_physics-inspired_metaheuristic_optimization_algorithm
 
 https://www.sciencedirect.com/science/article/pii/S0020025509001200
+
+S. Kirkpatrick, C. D. Gelatt, and M. P. Vecchi. "Optimization by Simulated Annealing." Science 220, no. 4598 (1983): 671-80. http://www.jstor.org/stable/1690046.
+S. Wiseman and A. M. Rush, "Sequence-to-Sequence Learning as Beam-Search Optimization," 2016 Cornell University Computer Science Computation and Language. https://arxiv.org/abs/1606.02960
+M. Juneja and S. K. Nagar, "Particle swarm optimization algorithm and its parameters: A review," 2016 International Conference on Control, Computing, Communication and Materials (ICCCCM), Allahbad, 2016, pp. 1-5.

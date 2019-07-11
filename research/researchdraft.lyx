@@ -89,72 +89,14 @@
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-This is a template \SpecialChar LyX
- file for conference articles of conferences organized
- by the Institute of Electrical and Electronics Engineers (IEEE).
- For IEEE journal articles, see the template file 
-\emph on
-IEEEtran-Journal.lyx
-\emph default
-.
- For general info see 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://wiki.lyx.org/Examples/IEEE
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-It is important that you use the correct document class options for your
- document..
- These are explained in the IEEEtran documentation: 
-\begin_inset Flex URL
-status open
-
-\begin_layout Plain Layout
-
-http://mirror.ctan.org/macros/latex/contrib/IEEEtran/IEEEtran_HOWTO.pdf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Title
 Directional Search Algorithm and its Utilization of Simulated Annealing
- and Contract-Retract
+ and Expand-Retract
 \end_layout
 
 \begin_layout Author
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 the standard way: 
@@ -164,7 +106,7 @@ the standard way:
 
 
 \begin_inset Flex Author Name
-status collapsed
+status open
 
 \begin_layout Plain Layout
 Beom Jin An
@@ -174,7 +116,7 @@ Beom Jin An
 
 
 \begin_inset Flex Author Affiliation
-status collapsed
+status open
 
 \begin_layout Plain Layout
 United States Military Academy
@@ -212,8 +154,8 @@ n of existing optimization techniques may improve the performance of the
  extends out in different directions to “scope” out its surroundings.
  This particle scopes out in multiple directions and finds the solutions
  at those extended positions.
- With the incorporation of simulated annealing and a method called “Contraction-
-Retraction,” the particle will be able to explore the search space expansively.
+ With the incorporation of simulated annealing and a method called “Expand-Retra
+ct,” the particle will be able to explore the search space expansively.
  Also, the algorithm also offers a unique technique that capitalizes a sufficien
 t balance between exploration and exploitation.
  The first part of the research will explain and justify the utilization
@@ -224,34 +166,11 @@ t balance between exploration and exploitation.
  The research examined these four factors on DSA and analyzed the overall
  performance of the algorithm compared to that of a similar algorithm, the
  Particle Swarm Optimization (PSO).
- 
 \end_layout
 
-\begin_layout Peer Review Title
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Don't add text here!
-\end_layout
-
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-required if you use the document class option 
-\family sans
-peerreview
-\family default
-, must otherwise not be used
-\end_layout
-
-\end_inset
-
-
+\begin_layout Keywords
+Directional Search Algorithm, Particle Swarm Optimization, scope, global
+ minimum, Expand-Retract, exploration, and exploitation
 \end_layout
 
 \begin_layout Section
@@ -262,7 +181,7 @@ Introduction
 Optimization problems require an immense amount of computational time as
  the problem scales increase.
  It is often unrealistic to compute the solution of an optimization problem
- using brute force because the problem has a nondeterministic polynomial
+ using brute force because the problem has a non-deterministic polynomial
  computational time.
  Thus, metaheuristic algorithms are built to overcome this computational
  time problem.
@@ -287,7 +206,7 @@ It is often difficult to create an optimization algorithm because of its
 \end_layout
 
 \begin_layout Subsection
-Simluated Annealing
+Simulated Annealing
 \end_layout
 
 \begin_layout Standard
@@ -311,6 +230,20 @@ y in which the search will accept a worse solution.
  the exploitation within the algorithm.
  It also offers the probability characteristic that will allow for a more
  randomized search.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Kirkpatrick, S., C.
+ D.
+ Gelatt, and M.
+ P.
+ Vecchi.
+ "Optimization by Simulated Annealing.".
+\end_layout
+
+\end_inset
+
  
 \end_layout
 
@@ -319,23 +252,38 @@ Beam Search
 \end_layout
 
 \begin_layout Standard
-In contrast to the simulated annealing method, there is a straight forward
- concept to pick the solution each step in the optimization algorithm.
+In contrast to the simulated annealing method, a greedy selection method
+ does not rely on probability.
  As simulated annealing offers a probability whether to accept the solution
  or not, this classic method called “Beam search” is a greedy search algorithm
- that always accepts the best neighboring node.
+ that always accepts the best neighboring node in a limited set.
  It explores all possible adjacent nodes and expands to the most promising
  node.
  Thus, the probability of accepting a worse solution is always zero.
- The benefit of the Beam search is that it will approach the solution much
- quicker than the methods that use probabilities.
+ The benefit of the Beam search is that it will approach the solution area
+ much quicker than simulated annealing.
  Also, another advantage is that it does not have any memory requirement.
+ It does not need to store or share information between nodes.
  However, the disadvantage of Beam search is that it may converge quicker
  into a local optimum will not be able to get out.
  The Beam search does not explore enough of the search space, and its convergenc
 e rate is too high.
  Thus, once the search enters a local minimum, it has no chance of getting
  out.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+S.
+ Wiseman and A.
+ M.
+ Rush, "Sequence-to-Sequence Learning as Beam-Search Optimization," 2016
+ Cornell University Computer Science Computation and Language
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -343,25 +291,48 @@ Particle Swarm Optimization (PSO)
 \end_layout
 
 \begin_layout Standard
-PSO is a metaheuristic that utilizes swarm intelligence to find the optimum
- solution of a system.
- Swarm intelligence capitalizes the collective knowledge of multiple particles.
- The algorithm initiates with a certain number of particles, and it iteratively
+PSO is a metaheuristic that utilizes swarm intelligence to find a solution
+ of a system.
+ Swarm intelligence capitalizes on the collective knowledge of multiple
+ particles.
+ The algorithm initiates with a desired number of particles, and it iteratively
  improves the positions of these particles by using formulas to determine
  the position and the velocity of each particle.
- The particles are guided towards the best solution.
+ This formula takes account of three parameters: social constant, cognitive
+ constant, and weight.
+ Social constant determines the importance of a collective best solution.
+ Cognitive constant determines the importance of the particle's personal
+ best solutions.
+ The weight determines how hard or easy it is to change the particles momentum.
+ With these parameters, the particles are guided towards the best solution.
  The benefit of PSO is that it is more thorough during the exploration process.
- The particles move across the search space, and they do not “teleport”
- across the search space.
+ The particles move across the search space with velocity, and with a balance
+ of high and low velocities among the particles, they can explore the search
+ space thoroughly.
  When particles teleport randomly throughout the search space, it loses
  its exploitative behavior will not be able to settle on a solution.
  PSO particles converge to the best solution gradually.
  However, this property can also be a disadvantage as the convergence rate
  might be too fast before conducting sufficient exploration.
  PSO does not have a feature that expands its search since it is designed
- only to converge.
+ to converge and not design to explore more.
  Thus, once enough particles swarm into a local minimum, they have no way
  of exiting that space.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+M.
+ Juneja and S.
+ K.
+ Nagar, "Particle swarm optimization algorithm and its parameters: A review,"
+ 2016 International Conference on Control, Computing, Communication and
+ Materials
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -371,6 +342,9 @@ Direction Search Algorithm (DSA)
 \begin_layout Standard
 DSA is an optimization algorithm that takes a continuous function of any
  dimensions as input and outputs the global minimum of that function.
+ The accuracy of the solutions is not always 100%, but DSA has shown to
+ be more accurate than the PSO according the experiment conducted in this
+ research paper.
 \end_layout
 
 \begin_layout Subsection
@@ -399,7 +373,7 @@ scoping particles.
 \begin_inset Quotes erd
 \end_inset
 
- The number of the scoping particles varies depedning on the dimension of
+ The number of the scoping particles varies depending on the dimension of
  the search space.
  The total 
 \begin_inset Formula $Pop$
@@ -454,7 +428,105 @@ dimension of the scope
 \end_inset
 
  is created to store the position of the best particle, in this case, the
- particle with the lowest calcuated value.
+ particle with the lowest calculated value.
+\end_layout
+
+\begin_layout Subsection
+Pseudo code
+\end_layout
+
+\begin_layout Subsection*
+Directional Search Algorithm
+\end_layout
+
+\begin_layout Enumerate
+Initialize an array, 
+\begin_inset Formula $fitness$
+\end_inset
+
+ [0,1,2...PopSize]: this stores all the 
+\begin_inset Quotes eld
+\end_inset
+
+solutions
+\begin_inset Quotes erd
+\end_inset
+
+ that the particles landed on
+\end_layout
+
+\begin_layout Enumerate
+Initialize a matrix, 
+\begin_inset Formula $particles$
+\end_inset
+
+ [PopSize x dimension]: this holds the positions or coordinates (x, y, z,
+ ...dim) for each particle, the first row of the matrix being the center particle
+\end_layout
+
+\begin_layout Enumerate
+Randomize initial position for the agent particle: the center particle spawns
+ on the search space randomly at the very first time.
+\end_layout
+
+\begin_layout Enumerate
+for l in range(iterations): algorithm ends when all iterations are done
+\end_layout
+
+\begin_layout Enumerate
+for i in range(dimension): the nested for loop is designed to update the
+ column first then the row
+\end_layout
+
+\begin_layout Enumerate
+for j in range(PopSize): a column is one axis of the particle positions,
+ the rows are the different particles
+\end_layout
+
+\begin_layout Enumerate
+Calculate k which is the Expand-Contract value (this is uses a mathematical
+ formula, and the function looks like a gradually decreasing wave)
+\end_layout
+
+\begin_layout Enumerate
+Calculate ScopeFactor by finding a random value between 0 and k and normalize
+ it (to normalize, it looks at the inputted lower and upper bounds to make
+ the ScopeFactor scaled) 
+\end_layout
+
+\begin_layout Enumerate
+Update the particle position matrix 
+\begin_inset Formula $particle$
+\end_inset
+
+ by adding or subtracting the ScopeFactor to the positions of the particles
+ (this will move the Scope particles to its respective positions, having
+ the agent particle in the center)
+\end_layout
+
+\begin_layout Enumerate
+Calculate the best fitness out of all the particles (using min function
+ on 
+\begin_inset Formula $fitness$
+\end_inset
+
+ array)
+\end_layout
+
+\begin_layout Enumerate
+Accept the new best fitness if it is better than the current best fitness
+ (simple comparison)
+\end_layout
+
+\begin_layout Enumerate
+If the new best fitness is worse than the current best fitness, Calculate
+ the probability of acceptance using simulated annealing (the acceptance
+ gets stricter as iterations go because of the temperature cool down)
+\end_layout
+
+\begin_layout Enumerate
+Finally, the algorithm outputs the position of the best particle and its
+ fitness (solution)
 \end_layout
 
 \begin_layout Subsection
@@ -498,13 +570,23 @@ values
 \begin_layout Standard
 \begin_inset Graphics
 	filename code/graphs/2D.png
+	scale 75
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
 \begin_inset Graphics
 	filename code/graphs/3d.png
+	scale 75
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -539,7 +621,7 @@ As mentioned above, certain values are added or subtracted from the coordinate
  values of the agent which is the center coordinate.
  This allows the scoping particles to expand out and explore the search
  space.
- The algorithm randomizes these values to ensure a robust explorative feature.
+ The algorithm randomizes these values to ensure a robust exploratory feature.
  The randomization of the scoping factor is as follows:
 \end_layout
 
@@ -548,7 +630,7 @@ Calculate
 \begin_inset Formula $v$
 \end_inset
 
- which is the Contract-Retract value (covered in 3.4)
+ which is the Expand-Retract value (covered in 3.4)
 \end_layout
 
 \begin_layout Enumerate
@@ -614,21 +696,35 @@ A new
 \begin_inset Formula $ScopeFactor$
 \end_inset
 
- will be calcuated for every particle on every iterations.
+ will be calculated for every particle on every iterations.
  This ensures the randomness of the scope and allows the particles to explore
  the search more robustly.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Graphics
 	filename code/graphs/convergence0.png
+	scale 50
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
 \begin_inset Graphics
 	filename code/graphs/convergence05.png
+	scale 50
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -637,27 +733,37 @@ A new
 \begin_layout Standard
 \begin_inset Graphics
 	filename code/graphs/convergence1.png
+	scale 50
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
 \begin_inset Graphics
 	filename code/graphs/convergence2.png
+	scale 50
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
 \end_layout
 
 \begin_layout Subsection
-Contract-Retract
+Expand-Retract
 \end_layout
 
 \begin_layout Standard
-The concept of Contract-Retract comes from the idea that the scope of the
+The concept of Expand-Retract comes from the idea that the scope of the
  search will generally decrease over time but can also increase for a short
  period of time to explore outside the scope.
- The Contract-Retract formula is a decreasing sinusoidal wave function.
+ The Expand-Retract formula is a decreasing sinusoidal wave function.
  The equation is:
 \end_layout
 
@@ -695,12 +801,21 @@ The concept of Contract-Retract comes from the idea that the scope of the
 \end_inset
 
  (decremented every particle update)
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Graphics
 	filename code/graphs/kvalue.png
+	scale 40
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -715,8 +830,8 @@ The particles in the matrix
 \begin_inset Formula $PopSize$
 \end_inset
 
- are update every iteration individually.
- The update is simple as add or subtract the 
+ updates every iteration individually.
+ The update is as simple as adding or subtracting the 
 \begin_inset Formula $ScopeFactor$
 \end_inset
 
@@ -726,6 +841,14 @@ The particles in the matrix
 
 \begin_layout Standard
 Two-dimensional scope will have the following PopSize matrix:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $\left[\begin{array}{cc}
 x & y\\
 x & +y\\
@@ -740,10 +863,22 @@ x & -y\\
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Three-dimensional scope will have the following PopSize matrix: 
+Three-dimensional scope will have the following PopSize matrix:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
 \begin_inset Formula $\left[\begin{array}{ccc}
 x & y & z\\
 x & y & +z\\
@@ -761,6 +896,10 @@ x & -y & -z\\
 . & . & .\\
 . & . & .
 \end{array}\right]$
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -880,13 +1019,43 @@ Once the agent particle is updated, repeat the process until the end of
  The temperature T will cool down with a rate of 0.95.
 \end_layout
 
+\begin_layout Standard
+The following graph shows the movement of the 
+\begin_inset Quotes eld
+\end_inset
+
+Best Particle
+\begin_inset Quotes erd
+\end_inset
+
+ during a single search.
+ It starts at the top where it was randomly initiated.
+ It makes its way down as the Scope Particles find better solutions.
+ It converges to an area where it will stay unless the ScopeFactor is big
+ enough to detect a better solution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename code/graphs/3drep.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Usage
 \end_layout
 
 \begin_layout Standard
-The DSA is a function that takes the following inputs: 
-\begin_inset Formula $DSA(lowerbound,upperbound,ScopeDimension,iterations,function,convergenceRate)$
+The DSA is a function that takes the following inputs:
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $DSA(lobound,upbound,ScopeDim,iter,func,convgRate)$
 \end_inset
 
 
@@ -897,44 +1066,7 @@ The lowerbound and upperbound create a square boundary on a two-dimensional
  search space and a cube boundary on a three-dimensional search space.
  The ScopeDimension is always one less than the function dimensions (search
  space).
- 
-\end_layout
-
-\begin_layout Subsection
-Code
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename code/codePDF_Page_1.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename code/codePDF_Page_2.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename code/codePDF_Page_3.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename code/codePDF_Page_4.png
-
+\begin_inset Newline newline
 \end_inset
 
 
@@ -954,7 +1086,19 @@ In order to test the accuracy and precision of DSA.
 \end_layout
 
 \begin_layout Standard
-Function 1:
+Function 1, The Bowl Function:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -969,14 +1113,34 @@ Function 1:
 \end_layout
 
 \begin_layout Standard
-Function 2, Beale Function:
+\begin_inset Graphics
+	filename A-bowl-shaped-function-to-be-minimized.png
+	lyxscale 40
+	scale 15
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename code/graphs/beale.svg
-	lyxscale 2
+Function 2, Beale Function:
+\begin_inset Newline newline
+\end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x,y)=(1.5-x+xy)^{2}+(2.25-x+xy^{2})^{2}$
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -997,13 +1161,18 @@ Function 2, Beale Function:
 
 \begin_layout Standard
 Function 3, Levi Function:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename code/graphs/levi.svg
-	lyxscale 2
+\begin_inset Formula $f(x,y)=sin^{2}3\pi x+(x-1)^{2}(1+sin^{2}3\pi y)$
+\end_inset
 
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -1024,13 +1193,18 @@ Function 3, Levi Function:
 
 \begin_layout Standard
 Function 4, Eggholder Function:
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename code/graphs/eggholder.svg
-	lyxscale 2
+\begin_inset Formula $f(x,y)=-(y+47)sin\sqrt{\left|\frac{x}{2}+(y+47)\right|}-xsin\sqrt{\left|x-(y+47)\right|}$
+\end_inset
 
+
+\begin_inset Newline newline
 \end_inset
 
 
@@ -1043,11 +1217,66 @@ Function 4, Eggholder Function:
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Experiment
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement htbp
+In order to figure out the effectiveness of the new algorithm, an experiment
+ must be done.
+ The DSA takes in multiple inputs that can affect the accuracy of the results.
+ The test functions have their own unique features that make difficult for
+ any static algorithms.
+ Thus, the parameters on DSA may need to be adjusted to fit the test functions.
+ At the same time, numerous trials with many different functions can determine
+ the optimal parameter settings for DSA.
+ For the purpose of this experiment, four different test functions were
+ used.
+ 
+\end_layout
+
+\begin_layout Subsection
+Method
+\end_layout
+
+\begin_layout Standard
+The DSA is written in Python 3.7.
+ The computational time for DSA is 
+\begin_inset Formula $O(dim*iterations*PopSize^{2}).$
+\end_inset
+
+ The python file DSA.py was experimented on a MacBook Pro 2.9 GHz Intel Core
+ i9.
+ The method for this experiment is to test all four functions and figure
+ out which parameters change the accuracy of that function.
+ There are five independent variables: function, bounds, iterations, trials,
+ convergence rate.
+ There are two dependent variables: accuracy and calculation.
+ The function variable selects one of four functions.
+ The bound parameter sets the area of search within the search space.
+ The iteration parameter determines how many times the scope particles will
+ expand and move per DSA function call.
+ The trial parameter determines how many times the experiment will call
+ the DSA function.
+ The convergence rate determines how fast the search scope will converge
+ to an area (refer to Section 3.3 above).
+ For the results of the experiment, the percent accurate and calculation
+ time are the outputs.
+ The accuracy is determined by how many time the algorithm converged to
+ the global optimum out of the number of trials.
+ The calculation time is determined by calculating the time between the
+ start of the first trial and the end of the last trial.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement tbph
 wide false
 sideways false
 status open
@@ -1056,12 +1285,12 @@ status open
 \align center
 
 \family sans
-A single column figure goes here
+DSA Experiment Results
 \end_layout
 
 \begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="7">
+<lyxtabular version="3" rows="17" columns="7">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1111,7 +1340,7 @@ trials
 \begin_inset Text
 
 \begin_layout Plain Layout
-convergence rate
+c-rate
 \end_layout
 
 \end_inset
@@ -1129,7 +1358,7 @@ accuracy
 \begin_inset Text
 
 \begin_layout Plain Layout
-calculation time
+time
 \end_layout
 
 \end_inset
@@ -1194,7 +1423,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.18s
 \end_layout
 
 \end_inset
@@ -1259,7 +1488,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.43s
 \end_layout
 
 \end_inset
@@ -1324,7 +1553,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.51s
 \end_layout
 
 \end_inset
@@ -1389,7 +1618,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.62s
 \end_layout
 
 \end_inset
@@ -1454,7 +1683,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.59s
 \end_layout
 
 \end_inset
@@ -1519,7 +1748,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.52s
 \end_layout
 
 \end_inset
@@ -1584,7 +1813,72 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
+3.45s
+\end_layout
 
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13.95s
 \end_layout
 
 \end_inset
@@ -1649,7 +1943,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.66s
 \end_layout
 
 \end_inset
@@ -1714,7 +2008,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+3.84s
 \end_layout
 
 \end_inset
@@ -1779,7 +2073,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+5.28s
 \end_layout
 
 \end_inset
@@ -1844,7 +2138,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+5.12s
 \end_layout
 
 \end_inset
@@ -1909,7 +2203,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10.17s
 \end_layout
 
 \end_inset
@@ -1974,7 +2268,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+19.89s
 \end_layout
 
 \end_inset
@@ -2039,7 +2333,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+40.80s
 \end_layout
 
 \end_inset
@@ -2050,7 +2344,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+4
 \end_layout
 
 \end_inset
@@ -2059,7 +2353,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+-512,512
 \end_layout
 
 \end_inset
@@ -2068,7 +2362,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+10000
 \end_layout
 
 \end_inset
@@ -2077,7 +2371,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+100
 \end_layout
 
 \end_inset
@@ -2086,7 +2380,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+0
 \end_layout
 
 \end_inset
@@ -2095,7 +2389,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+93%
 \end_layout
 
 \end_inset
@@ -2104,7 +2398,7 @@ calculation time
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+102.66s
 \end_layout
 
 \end_inset
@@ -2121,11 +2415,7 @@ calculation time
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Captions go 
-\emph on
-under
-\emph default
- the figure
+Running DSA on the test functions with different parameters
 \end_layout
 
 \end_inset
@@ -2136,41 +2426,100 @@ under
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Comparison with PSO
+\end_layout
+
+\begin_layout Standard
+Particle Swarm Optimization uses particles to explore the search space.
+ The information of the particles are centralized, and the particles move
+ in accordance with the centralized information.
+ These two concepts are analogous to Directional Search Algorithm.
+ Thus, a comparison can be make between these two algorithms to determine
+ the benefits and disadvantages of the both.
+ The experiment for the PSO is the same as the experiment for the DSA.
+ The parameters will be tweaked in order to figure out how the parameters
+ affect the accuracy.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
-placement htbp
+placement tbph
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Table captions go 
-\emph on
-above
-\emph default
- the table
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
+
+\family sans
+PSO Experiment Results
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
+<lyxtabular version="3" rows="17" columns="7">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-delete
+func
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bounds
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+iter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+#particles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(w,c1,c2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+acc
 \end_layout
 
 \end_inset
@@ -2179,7 +2528,982 @@ delete
 \begin_inset Text
 
 \begin_layout Plain Layout
-this
+time
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.61s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.65s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.61s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.79s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.29s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35.04s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-5,5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,1,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.18s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.03s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.56s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-10,10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18.91s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.45s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35.02s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+59%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.85s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+400
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+68%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+140.89s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.1,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69.09s
 \end_layout
 
 \end_inset
@@ -2190,7 +3514,52 @@ this
 \begin_inset Text
 
 \begin_layout Plain Layout
-example
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-512,512
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(0.5,2,2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+55%
 \end_layout
 
 \end_inset
@@ -2199,7 +3568,7 @@ example
 \begin_inset Text
 
 \begin_layout Plain Layout
-table
+68.87s
 \end_layout
 
 \end_inset
@@ -2211,6 +3580,150 @@ table
 
 
 \end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Running PSO on the test functions with different parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Analysis
+\end_layout
+
+\begin_layout Subsubsection
+DSA Analysis
+\end_layout
+
+\begin_layout Standard
+DSA managed to output a high accuracy for the difficult functions.
+ The most difficult function was the Eggholder Function, which had a given
+ boundary (-512,512).
+ It has many local minima that are not easy to distinguish.
+ The simulated annealing and the Expand-Retract were able to mitigate the
+ search from converging too fast on to a local minimum.
+ They also help the scope to escape local minima by reaching outside the
+ local area.
+ If the convergence rate is increased on the Eggholder function, the scope
+ converges too quickly and the accuracy drops from 87% to 6%.
+ Also, the bounds are also important.
+ If the search area is too large, it may take more iterations to find the
+ global optimum.
+ Another difficult function was the Beale Function.
+ It is difficult because a large part of the function is flat.
+ Thus, if it converges too slowly when the bounds are too large, it might
+ take a long time to reach the bottom of the function, and the search scope
+ will linger around a local optimum once it reaches the bottom.
+ A higher iteration number improves the accuracy on function simple because
+ it has more opportunities to find the global optimum.
+ However, increasing the iteration also increases the calculation time.
+ The iteration linearly increases the computational time.
+ The trial was set to 100 to easily calculate the percentage of accuracy.
+ Overall, DSA proved to be accurate most of the time (greater than 50% accuracy).
+ It is also time efficient because of its utilization of limited number
+ of particles and the use of matrices which allows updating of particles
+ at constant time.
+\begin_inset Newline newline
+\end_inset
+
+The following graphs shows the relation between iterations and calculation
+ time in DSA.
+ The relationship is linear, O(n).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename code/graphs/calctime.PNG
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+PSO Analysis
+\end_layout
+
+\begin_layout Standard
+PSO is an algorithm that relies on the particles to find their way to the
+ global minimum.
+ Thus, more particles present in the search space, more accurate the solution
+ will be.
+ Through the experiment, PSO proved to be sufficient at finding the global
+ minimum of a bowl-shaped function (100% accuracy in function 1 and 3).
+ However, PSO had a difficult time dealing with functions with irregular
+ placement of local minima.
+ On the functions that were not bowl-shaped, PSO had a low accuracy on finding
+ the global minimum.
+ Increasing the number of particles slightly increased the accuracy, but
+ the calculation time was also increased proportionally.
+ The PSO could not surpass DSA on calculation time.
+ The biggest factor in the time discrepancy is the use of particles.
+ PSO relies heavily on the characteristics of the particle: velocity and
+ position.
+ It constantly updates the velocity and the position of numerous particles
+ each iteration.
+ On the other hand, DSA only updates the position of the particle for limited
+ amount of particles.
+ In addition, the PSO code used in this experiment utilizes a Particle class
+ that had attributes and functions.
+ Creating these Particle objects may take much longer time than simply referenci
+ng and updating arrays.
+ Therefore, DSA proves to be computationally faster than PSO.
+ 
+\begin_inset Newline newline
+\end_inset
+
+On the graph, Calculation Time on Tests, it shows that the DSA runs much
+ faster than PSO.
+ PSO also increases its calculation time exponentially as the number of
+ particles increases.
+ The difference between the two calculation times are on an average of factor
+ of 2.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename code/graphs/dsavspso.PNG
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On the graph, Accuracy on Tests, DSA proves to be more accurate on the harder
+ functions.
+ Both algorithms were able to achieve high accuracy on the easier functions,
+ but PSO failed to achieve a good accuracy on the harder functions.
+ DSA consistently stayed between 75% to 100% on all the test cases.
+ PSO varied between 10% to 100% which shows that PSO is not reliable.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename code/graphs/accuracy2.PNG
+	scale 70
 
 \end_inset
 
@@ -2222,150 +3735,114 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-bla bla
+Directional Search Algorithm is an algorithm that combined the basic ideas
+ to form an efficient system that can calculate the global minimum of a
+ function.
+ The algorithm's idea is inspired by Particle Swarm Optimization and the
+ Beam Search.
+ DSA also incorporates simulated annealing to improve exploration.
+ This algorithm combines these methods in an intuitive manner that allows
+ for a good balance between exploitation and exploration.
+ The purpose of this algorithm was to create a novel technique that can
+ show its potential for improvement.
+ The Expand-Retract method seems intuitive, but this technique can not be
+ normally seen in optimization algorithms.
+ The idea is as simple as letting the scope of the search expand out to
+ explore and retract to converge on a solution.
+ This allows the search particles to have a chance to get out a local minimum
+ and find a better solution.
+ This convergence rate can be adjusted during initialization.
+ DSA can offer flexibility depending on the characteristics of the inputted
+ function.
+ It need more research and experimentation to find the optimal parameters.
+ As DSA behaves differently depending on the input function, a future experiment
+ation can focus on what characteristics of the function change the behaviors
+ of the algorithm.
+ 
 \end_layout
 
-\begin_layout Appendices
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Don't add text here!
-\end_layout
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-9"
 
 \end_inset
 
+J.
+ Dreo, A.
+ Petrowski, P.
+ Siarry, E.
+ Taillard, 
+\begin_inset Quotes eld
+\end_inset
 
+Metaheuristics for Hard Optimization: Simulated Annealing, Tabu Search,
+ Evolutionary and Genetic Algorithms, Ant Colonies,...Methods and Case Studies.
+ Springer.
+ 2006.
 \end_layout
 
-\begin_layout Section
-First appendix
-\end_layout
-
-\begin_layout Standard
-Citation: 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "IEEEexample:beebe_archive"
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-10"
 
 \end_inset
 
-
+M.
+ Juneja and S.
+ K.
+ Nagar, "Particle swarm optimization algorithm and its parameters: A review,"
+ 2016 International Conference on Control, Computing, Communication and
+ Materials (ICCCCM), Allahbad, 2016, pp.
+ 1-5.
 \end_layout
 
-\begin_layout Section
-Second appendix
-\end_layout
-
-\begin_layout Section*
-Acknowlegment
-\end_layout
-
-\begin_layout Standard
-bla bla
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Remember though that your final submission is supposed to have all the bibliogra
-phy entries embedded in the \SpecialChar LaTeX
--file.
- This means you eventually have to copy the .bbl file into the latex file
- and remove the bibtex lines.
-\end_layout
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-6"
 
 \end_inset
 
-
+S.
+ Kirkpatrick, C.
+ D.
+ Gelatt, and M.
+ P.
+ Vecchi.
+ "Optimization by Simulated Annealing." Science 220, no.
+ 4598 (1983): 671-80.
+ http://www.jstor.org/stable/1690046.
 \end_layout
 
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "IEEEabrv,IEEEexample"
-options "IEEEtran"
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-7"
 
 \end_inset
 
-
+S.
+ Wiseman and A.
+ M.
+ Rush, "Sequence-to-Sequence Learning as Beam-Search Optimization," 2016
+ Cornell University Computer Science Computation and Language.
+ https://arxiv.org/abs/1606.02960
 \end_layout
 
-\begin_layout Biography
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "1in"
-special "none"
-height "1.25in"
-height_special "none"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-Replace this box by an image with a width of 1
-\begin_inset space \thinspace{}
-\end_inset
-
-in and a height of 1.25
-\begin_inset space \thinspace{}
-\end_inset
-
-in!
-\end_layout
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-11"
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Argument 2
-status open
-
-\begin_layout Plain Layout
-Your Name
-\end_layout
-
-\end_inset
-
- All about you and the what your interests are.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Biography without photo
-\begin_inset Argument 1
-status open
-
-\begin_layout Plain Layout
-Coauthor
-\end_layout
-
-\end_inset
-
-Same again for the co-author, but without photo
+wikipedia.org.
+ (2019).
+ Test functions for optimization.
+ [online] Available at: https://en.wikipedia.org/wiki/Test_functions_for_optimizat
+ion [four functions graphics].
 \end_layout
 
 \end_body

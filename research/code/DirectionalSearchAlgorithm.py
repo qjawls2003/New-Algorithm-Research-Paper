@@ -23,7 +23,7 @@ def DSA(lb, ub, dim, iters, func, convergence):
     restart = 0 #to avoid resetting the explorer again after one iteration
     #repeated = 0 #used track repeats, to tighten the scope if the scope is too big
     countdown = iters*PopSize*dim #total number of k values needed
-    v = contractRetract(countdown,1,100,0.05)
+    v = ExpandRetract(countdown,1,100,0.05)
     T = 100 #initial temperature
     cooldown = 0.95 #temperature cooldown rate
     
@@ -32,17 +32,17 @@ def DSA(lb, ub, dim, iters, func, convergence):
 
     #THIS WHOLE SECTION UPDATES THE "particles" matrix   
     for l in range(iters): #for every iteration
-        
+        scopefactors.append(T)
         for i in range(dim): #for each dimensions, ex. x coord -> y coord -> z coord
             switch = 0 #trinary, since the scope can only to stay, subtracted, or added from the explorer's coordinate
             count = (3**(dim-1))/(3**i) 
             counter = 0
             for j in range(0, PopSize): #for every particle 
-                k = contractRetract(countdown,1,100,0.05)/v #the input values are arbitrary, the v makes the output proportional
+                k = ExpandRetract(countdown,1,100,0.05)/v #the input values are arbitrary, the v makes the output proportional
                 countdown -= 1
                 if k < 0: #keeps the output positive
                     k = -1*k
-                scopefactors.append(k)
+                
 
                 #each particle will get a random scopefactor depending on iterations and the convergence factor
                 ScopeFactor = numpy.random.uniform(0,k)*((ub-lb)/(l+1)**convergence)
@@ -112,7 +112,7 @@ def calcBestFitness(particles, PopSize, dim, bestfit, func):
  
     return best, fit
 
-def contractRetract(x,A,B,C):
+def ExpandRetract(x,A,B,C):
     return A*(x**2)+ x*B*(math.cos(C*math.pi*x))
 
 ############################### FUNCTIONS ###################################################
@@ -145,7 +145,7 @@ def function4(coord): #Eggholder function f(512, 404.2319) = -959.6407
 convergence = 0
 best = open('best1.csv', 'a')
 bestfit = open('bestfit2.csv', 'a')
-testrun = 100
+testrun = 1
 numRight = 0.0
 right1 = 0.000
 right4 = -959.6407
@@ -169,11 +169,11 @@ bestfit.close()
 ############################# PLOT #############################################################
       
 plt.plot(scopefactors)
-plt.title('Contract-Retract')
+plt.title('Temperature')
 #plt.title('Convergence Rate: '+ str(convergence))
-plt.xlabel('Iteration per particle')
-plt.ylabel('k-value')
-#plt.show()
+plt.xlabel('Iteration')
+plt.ylabel('temperature')
+plt.show()
 x = np.linspace(-10, 10, 30)
 y = np.linspace(-10, 10, 30)
 
@@ -189,7 +189,7 @@ ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z');
 
-#fig.show()
+fig.show()
           
                       
             
